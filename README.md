@@ -1,27 +1,86 @@
-# Floating-Poit-Adder-with-VHDL
-Designed and simulated a custom floating-point unit using VHDL on Spartan 3E FPGA. This project involved understanding 
-IEEE 754 representation and managing exponent/mantissa alignment. Compare CLA and Pipeline technics.
+# Floating-Point Adder/Subtractor in VHDL
 
-Very large numbers and very small fractional quantities cannot be displayed. Additionally, the quotient of a 
-division, between two very large numbers can possibly be lost. This limitation, can be surpassed in decimal 
-number, by using a scientific display. We dynamically move the decimal point to a convenient spot, and use an exponent 
-of 10, so we can identify the location of the decimal point. This technique, allows the representation of a very wide 
-range of big and small numbers, with the use of very few digits. The same exact approach can be followed for binary 
-numbers. A number can be represented in the following form: ±S∙B±E.
+## Overview
 
-Most important floating point representation, is by the IEEE 754 standard, which is adopted since 1985, and
-revised in 2008. This standard, was developed to facilitate the portability of programs from one processor to
-another, and to encourage the development of modern, numerically oriented programs. The standard has been widely 
-adopted and used in virtually all modern processors and numerical co-processors.
+This repository contains the VHDL implementation of a **32-bit floating-point adder/subtractor**, developed as part of my MSc thesis in **Electronic Physics – Electronic Circuit Design** at the Aristotle University of Thessaloniki.
 
-The sum of moving decimal point numbers is implemented using two methods. Ranking design was utilized for both 
-methods. In method Α, addition is succeeded with the creation of components, which contain CLA digit adders. 
-In method B, the pipeline technique is used, in which, every digit is summed with CLA addition.
+The project explores the design and implementation of floating-point arithmetic hardware using VHDL and compares two different architectures:
 
-The 28Bits of the two significant parts of the addends were added, using the pipeline technique. This is of course 
-done when the two significant parts are ready for addition, that is, after the right_shift_mantissa unit (comp2 of 
-adder_block).
-Therefore, the second way of adding concerns the Adder entity, and more specifically modifies the adding_same_exp and 
-CLA entities, which are in the Adder subunit of adder_block , which is a subunit of fpadder.
+- **Carry Look-Ahead (CLA) architecture**
+- **Pipelined architecture**
 
-Both methods are simulated, and extensive comparison is constructed on the performance and characteristics of each one.
+The design was developed, simulated and evaluated using Xilinx FPGA development tools.
+
+## Project Objectives
+
+The main objectives of the project were to:
+
+- Design a 32-bit floating-point addition/subtraction unit in VHDL.
+- Implement the arithmetic architecture using modular VHDL components.
+- Develop and compare CLA and pipelined implementations.
+- Verify the functionality of individual components and the complete design using VHDL testbenches.
+- Perform synthesis, implementation and timing analysis.
+- Compare FPGA resource utilization and performance between the two architectures.
+
+## Design
+
+The floating-point arithmetic unit is composed of several functional blocks responsible for:
+
+- Exponent comparison
+- Exponent subtraction
+- Mantissa alignment and shifting
+- Mantissa addition/subtraction
+- Carry Look-Ahead addition
+- Result normalization
+- Multiplexing and control
+- Pipeline registers
+
+The repository contains separate implementations for the **CLA** and **Pipeline** architectures.
+
+## Verification
+
+Functional verification was performed using dedicated VHDL testbenches for the individual modules and the complete floating-point arithmetic unit.
+
+Simulation was carried out using **Xilinx ISim**.
+
+The project also included:
+
+- Functional simulation
+- Synthesis
+- Map
+- Place & Route
+- Timing analysis
+- FPGA resource-utilization analysis
+
+## Target Hardware and Tools
+
+- **Language:** VHDL
+- **FPGA:** Xilinx Spartan-3E
+- **Development environment:** Xilinx ISE
+- **Simulation:** Xilinx ISim
+- **Target clock:** 50 MHz
+
+## Repository Structure
+
+The repository is organized into separate directories containing:
+
+- CLA implementation
+- Pipelined implementation
+- CLA testbenches
+- Pipeline testbenches
+
+The source code is divided into modular VHDL entities to facilitate testing, verification and comparison of the two architectures.
+
+## MSc Thesis
+
+**Thesis title:**  
+*Floating-Point Adder and Subtractor using VHDL*
+
+**MSc:** Electronic Physics – Electronic Circuit Design  
+**Department of Physics, Aristotle University of Thessaloniki**
+
+The thesis focused on the complete design flow of the floating-point arithmetic unit, from VHDL implementation and simulation to FPGA synthesis, implementation and performance evaluation.
+
+## Author
+
+**Dimitra Katsoula**
